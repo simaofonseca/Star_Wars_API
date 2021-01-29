@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  nodejs:
+    container_name: node
+    restart: always
+    build: ./rest-api-node-express
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    environment:
+     MONGO_INITDB_ROOT_USERNAME: admin
+     MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - "27017:27017"
